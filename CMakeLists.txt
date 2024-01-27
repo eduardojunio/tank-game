@@ -11,7 +11,9 @@ FetchContent_Declare(SFML
         EXCLUDE_FROM_ALL)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(TankGame src/main.cpp)
+add_executable(TankGame src/main.cpp
+        src/Game.cpp
+        src/Game.hpp)
 target_link_libraries(TankGame PRIVATE sfml-graphics)
 target_compile_features(TankGame PRIVATE cxx_std_20)
 
