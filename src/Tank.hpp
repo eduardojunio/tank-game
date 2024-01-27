@@ -13,6 +13,7 @@ class Tank : public sf::Drawable {
       void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
   private:
       void updateVelocity();
+      void updateRotation();
 
       sf::Texture tankTexture;
       sf::Sprite tank;

@@ -7,7 +7,7 @@ Tank::Tank()
 : tankTexture(),
   tank(),
   velocity(0, 0),
-  speed(250),
+  speed(100),
   movingUp(false),
   movingDown(false),
   movingLeft(false),
@@ -18,6 +18,8 @@ Tank::Tank()
   }
   tank.setTexture(tankTexture);
   tank.setPosition(400, 400);
+  sf::FloatRect localBounds = tank.getLocalBounds();
+  tank.setOrigin(localBounds.width / 2, localBounds.height / 2);
 }
 
 void Tank::draw(sf::RenderTarget& target, sf::RenderStates states) const {
@@ -60,6 +62,7 @@ void Tank::processEvent(const sf::Event& event) {
   }
 
   updateVelocity();
+  updateRotation();
 }
 
 void Tank::update(sf::Time dt) {
@@ -81,4 +84,31 @@ void Tank::updateVelocity() {
     newVelocity += sf::Vector2f(1, 0);
   }
   velocity = getUnitVector(newVelocity);
+}
+
+void Tank::updateRotation() {
+  if (movingUp) {
+    tank.setRotation(0);
+  }
+  if (movingRight) {
+    tank.setRotation(90);
+  }
+  if (movingDown) {
+    tank.setRotation(180);
+  }
+  if (movingLeft) {
+    tank.setRotation(270);
+  }
+  if (movingUp && movingRight) {
+    tank.setRotation(45);
+  }
+  if (movingDown && movingRight) {
+    tank.setRotation(135);
+  }
+  if (movingDown && movingLeft) {
+    tank.setRotation(225);
+  }
+  if (movingUp && movingLeft) {
+    tank.setRotation(315);
+  }
 }
