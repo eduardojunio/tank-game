@@ -2,10 +2,11 @@
 #define TANKGAME_GAME_HPP
 
 #include <SFML/Graphics.hpp>
+#include "Tank.hpp"
 
 class Game {
   public:
-      static constexpr double UPDATE_TIME = 1. / 50; // in seconds
+      static constexpr double UPDATE_TIME = 1. / 120; // in seconds
 
       Game();
 
@@ -16,8 +17,7 @@ class Game {
       void render();
 
       sf::RenderWindow window;
-      sf::Texture tankTexture;
-      sf::Sprite tank;
+      Tank tank;
 };
 
 

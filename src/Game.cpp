@@ -4,21 +4,14 @@
 
 Game::Game()
 : window(sf::VideoMode(1600, 900), "Tank!"),
-  tankTexture(),
   tank()
 {
-  window.setFramerateLimit(60);
+  window.setFramerateLimit(120);
 }
 
 void Game::run() {
   sf::Clock clock;
   sf::Time accumulator = sf::Time::Zero;
-
-  if (!tankTexture.loadFromFile("../../resources/tank.png")) {
-    std::cerr << "Unable to load the tank texture!" << std::endl;
-  }
-  tank.setTexture(tankTexture);
-  tank.setPosition(400, 400);
 
   while (window.isOpen()) {
     sf::Time elapsedTime = clock.restart();
@@ -37,11 +30,15 @@ void Game::processEvents() {
   while (window.pollEvent(event)) {
     if (event.type == sf::Event::Closed) {
       window.close();
+    } else {
+      tank.processEvent(event);
     }
   }
 }
 
-void Game::update(sf::Time dt) {}
+void Game::update(sf::Time dt) {
+  tank.update(dt);
+}
 
 void Game::render() {
   window.clear(sf::Color(239, 239, 240));

@@ -13,7 +13,11 @@ FetchContent_MakeAvailable(SFML)
 
 add_executable(TankGame src/main.cpp
         src/Game.cpp
-        src/Game.hpp)
+        src/Game.hpp
+        src/Tank.cpp
+        src/Tank.hpp
+        src/MathUtils.hpp
+        src/MathUtils.cpp)
 target_link_libraries(TankGame PRIVATE sfml-graphics)
 target_compile_features(TankGame PRIVATE cxx_std_20)
 
