@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Tank.hpp"
+#include "Battlefield.hpp"
 
 class Game {
   public:
@@ -18,6 +19,7 @@ class Game {
 
       sf::RenderWindow window;
       Tank tank;
+      Battlefield battlefield;
 };
 
 

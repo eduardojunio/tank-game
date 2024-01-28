@@ -17,7 +17,10 @@ add_executable(TankGame src/main.cpp
         src/Tank.cpp
         src/Tank.hpp
         src/MathUtils.hpp
-        src/MathUtils.cpp)
+        src/MathUtils.cpp
+        src/Battlefield.cpp
+        src/Battlefield.hpp
+        src/Utils.hpp)
 target_link_libraries(TankGame PRIVATE sfml-graphics)
 target_compile_features(TankGame PRIVATE cxx_std_20)
 

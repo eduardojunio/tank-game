@@ -17,7 +17,7 @@ Tank::Tank()
     throw std::runtime_error("Unable to load the tank texture!");
   }
   tank.setTexture(tankTexture);
-  tank.setPosition(400, 400);
+  tank.setPosition(100, 400);
   sf::FloatRect localBounds = tank.getLocalBounds();
   tank.setOrigin(localBounds.width / 2, localBounds.height / 2);
 }

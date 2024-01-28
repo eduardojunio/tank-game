@@ -1,10 +1,12 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
+#include "Utils.hpp"
 
 Game::Game()
-: window(sf::VideoMode(1600, 900), "Tank!"),
-  tank()
+: window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Tank!"),
+  tank(),
+  battlefield()
 {
   window.setFramerateLimit(120);
 }
@@ -42,6 +44,7 @@ void Game::update(sf::Time dt) {
 
 void Game::render() {
   window.clear(sf::Color(239, 239, 240));
+  window.draw(battlefield);
   window.draw(tank);
   window.display();
 }
