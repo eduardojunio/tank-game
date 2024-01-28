@@ -12,7 +12,7 @@ class Battlefield : public sf::Drawable {
       void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
   private:
-      sf::Image map;
+      std::vector<sf::FloatRect> map;
       std::vector<sf::RectangleShape> walls;
 };
 

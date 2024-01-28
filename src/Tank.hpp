@@ -1,6 +1,7 @@
 #ifndef TANKGAME_TANK_HPP
 #define TANKGAME_TANK_HPP
 
+#include <vector>
 #include <SFML/Graphics.hpp>
 
 class Tank : public sf::Drawable {
@@ -14,6 +15,7 @@ class Tank : public sf::Drawable {
   private:
       void updateVelocity();
       void updateRotation();
+      bool willCollide(sf::Vector2f movement);
 
       sf::Texture tankTexture;
       sf::Sprite tank;
@@ -23,6 +25,7 @@ class Tank : public sf::Drawable {
       bool movingDown;
       bool movingLeft;
       bool movingRight;
+      std::vector<sf::FloatRect> map;
 };
 
 

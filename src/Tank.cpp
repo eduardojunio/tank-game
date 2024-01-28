@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Tank.hpp"
 #include "MathUtils.hpp"
+#include "Utils.hpp"
 
 Tank::Tank()
 : tankTexture(),
@@ -13,6 +14,7 @@ Tank::Tank()
   movingLeft(false),
   movingRight(false)
 {
+  map = loadMap();
   if (!tankTexture.loadFromFile("../../resources/tank.png")) {
     throw std::runtime_error("Unable to load the tank texture!");
   }
@@ -66,7 +68,10 @@ void Tank::processEvent(const sf::Event& event) {
 }
 
 void Tank::update(sf::Time dt) {
-  tank.move(velocity * speed * dt.asSeconds());
+  sf::Vector2f movement = velocity * speed * dt.asSeconds();
+  if (!willCollide(movement)) {
+    tank.move(movement);
+  }
 }
 
 void Tank::updateVelocity() {
@@ -111,4 +116,15 @@ void Tank::updateRotation() {
   if (movingUp && movingLeft) {
     tank.setRotation(315);
   }
+}
+
+bool Tank::willCollide(sf::Vector2f movement) {
+  sf::FloatRect bounds = tank.getGlobalBounds();
+  bounds.left += movement.x;
+  bounds.top += movement.y;
+  bool result = false;
+  for (const auto &wallRect : map) {
+    result = result || wallRect.intersects(bounds);
+  }
+  return result;
 }
