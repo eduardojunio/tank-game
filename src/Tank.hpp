@@ -3,16 +3,15 @@
 
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include "SceneNode.hpp"
 
-class Tank : public sf::Drawable {
+class Tank : public SceneNode {
   public:
       Tank();
-
-      void processEvent(const sf::Event &event);
-      void update(sf::Time dt);
-  protected:
-      void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
   private:
+      void processEventCurrent(const sf::Event &event) override;
+      void updateCurrent(sf::Time dt) override;
+      void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override;
       void updateVelocity();
       void updateRotation();
       bool willCollide(sf::Vector2f movement);

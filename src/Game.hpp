@@ -18,7 +18,6 @@ class Game {
       void render();
 
       sf::RenderWindow window;
-      Tank tank;
       Battlefield battlefield;
 };
 

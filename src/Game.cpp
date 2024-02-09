@@ -1,14 +1,15 @@
 #include <iostream>
+#include <memory>
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
 #include "Utils.hpp"
 
 Game::Game()
 : window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Tank!"),
-  tank(),
   battlefield()
 {
   window.setFramerateLimit(120);
+  battlefield.addChild(std::make_unique<Tank>());
 }
 
 void Game::run() {
@@ -33,18 +34,17 @@ void Game::processEvents() {
     if (event.type == sf::Event::Closed) {
       window.close();
     } else {
-      tank.processEvent(event);
+      battlefield.processEvent(event);
     }
   }
 }
 
 void Game::update(sf::Time dt) {
-  tank.update(dt);
+  battlefield.update(dt);
 }
 
 void Game::render() {
   window.clear(sf::Color(239, 239, 240));
   window.draw(battlefield);
-  window.draw(tank);
   window.display();
 }

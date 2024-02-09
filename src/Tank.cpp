@@ -24,11 +24,11 @@ Tank::Tank()
   tank.setOrigin(localBounds.width / 2, localBounds.height / 2);
 }
 
-void Tank::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-  target.draw(tank);
+void Tank::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const {
+  target.draw(tank, states);
 }
 
-void Tank::processEvent(const sf::Event& event) {
+void Tank::processEventCurrent(const sf::Event& event) {
   if (event.type == sf::Event::KeyPressed) {
     switch (event.key.scancode) {
       case sf::Keyboard::Scan::Up:
@@ -67,7 +67,7 @@ void Tank::processEvent(const sf::Event& event) {
   updateRotation();
 }
 
-void Tank::update(sf::Time dt) {
+void Tank::updateCurrent(sf::Time dt) {
   sf::Vector2f movement = velocity * speed * dt.asSeconds();
   if (!willCollide(movement)) {
     tank.move(movement);

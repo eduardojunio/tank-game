@@ -16,8 +16,8 @@ Battlefield::Battlefield()
   }
 }
 
-void Battlefield::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+void Battlefield::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const {
   for (const auto &wall : walls) {
-    target.draw(wall);
+    target.draw(wall, states);
   }
 }

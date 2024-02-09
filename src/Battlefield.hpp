@@ -3,15 +3,15 @@
 
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include "SceneNode.hpp"
 
-class Battlefield : public sf::Drawable {
+class Battlefield : public SceneNode {
   public:
       Battlefield();
 
-  protected:
-      void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-
   private:
+      void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override;
+
       std::vector<sf::FloatRect> map;
       std::vector<sf::RectangleShape> walls;
 };
